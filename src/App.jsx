@@ -8,7 +8,7 @@ const DUMMY_DATA = [
     id: "n1",
     title: "I made this with React",
     body: "With Tailwind CSS and I used Vite instead of CRA because it's 10x faster.",
-    date: new Date(2022, 8, 15),
+    date: new Date(2022, 7, 15),
   },
 ];
 
