@@ -18,8 +18,11 @@ const NoteForm = (props) => {
   };
 
   const submitHandler = (e) => {
+    if (enteredTitle.trim().length === 0 || enteredNote.trim().length === 0) {
+      return;
+    }
+
     e.preventDefault();
-    console.log(new Date(enteredDate));
 
     const newNote = {
       id: Math.random().toString(),
@@ -33,13 +36,15 @@ const NoteForm = (props) => {
     setEnteredTitle("");
     setEnteredDate("");
     setEnteredNote("");
+
+    props.toggleForm(e);
   };
 
   return (
     <>
       <form
         action=""
-        className="bg-slate-800 p-8 text-slate-300 rounded-lg w-full  sm:grid grid-cols-2 gap-8"
+        className=" bg-slate-800 text-slate-300 rounded-lg w-full  sm:grid grid-cols-2 gap-8"
       >
         {/* column 1 */}
         <div className="flex flex-col gap-8 mb-8">
@@ -86,13 +91,21 @@ const NoteForm = (props) => {
             value={enteredNote}
             required
           ></textarea>
-          <button
-            typeof="submit"
-            onClick={submitHandler}
-            className="bg-purple-600 hover:bg-purple-900 duration-200 px-4 py-2 rounded text-lg"
-          >
-            Submit
-          </button>
+          <div className="flex justify-between align-middle">
+            <button
+              className="border-purple-600 border hover:bg-purple-200 duration-200 px-4 py-2 rounded text-md text-purple-500"
+              onClick={props.toggleForm}
+            >
+              Cancel
+            </button>
+            <button
+              typeof="submit"
+              onClick={submitHandler}
+              className="bg-purple-600 hover:bg-purple-900 duration-200 px-4 py-2 rounded text-lg"
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </form>
     </>
